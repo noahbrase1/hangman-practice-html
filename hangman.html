@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+    <head><title>Hangman</title></head>
+    <body>
+        <div class="container">
+            <div class="box1"></div>
+            <div class="box2"></div>
+            <div class="box3"></div>
+            <div class="box4"></div>
+
+        </div>
+
+        <div class="person">
+            <div class="head"></div>
+            <div class="body"></div>
+            <div class="arms"></div>
+            <div class="leg1"></div>
+            <div class="leg2"></div>
+        </div>
+
+        <div class="letters">
+            <div class="a">A</div>
+            <div class="b">B</div>
+            <div class="c">C</div>
+            <div class="d">D</div>
+            <div class="e">E</div>
+            <div class="f">F</div>
+            <div class="g">G</div>
+            <div class="h">H</div>
+            <div class="i">I</div>
+            <div class="j">J</div>
+            <div class="k">K</div>
+            <div class="l">L</div>
+            <div class="m">M</div>
+            <div class="n">N</div>
+            <div class="o">O</div>
+            <div class="p">P</div>
+            <div class="q">Q</div>
+            <div class="r">R</div>
+            <div class="s">S</div>
+            <div class="t">T</div>
+            <div class="u">U</div>
+            <div class="v">V</div>
+            <div class="w">W</div>
+            <div class="x">X</div>
+            <div class="y">Y</div>
+            <div class="z">Z</div>
+        </div>
+
+
+    </body>
+    <style>
+        .container {
+            display: flex;
+            justify-content: center; /* centers horizontally */
+        }
+
+        .box1 {
+            border-style: solid;
+            border-width: 1px;
+            display: block;
+            position: fixed;
+            width: 150px;
+            height: 10px;
+            top: 100px;
+            background-color: black;
+
+        }
+
+        .box2 {
+            border-style: solid;
+            border-width: 1px;
+            display: block;
+            position: fixed;
+            width: 10px;
+            height: 300px;
+            top: 100px;
+            left: 800px;
+            background-color: black;
+
+        }
+
+        .box3 {
+            border-style: solid;
+            border-width: 1px;
+            display: block;
+            position: fixed;
+            width: 300px;
+            height: 10px;
+            top: 400px;
+            left: 650px;
+            background-color: black;
+
+        }
+
+        .box4 {
+            border-style: solid;
+            border-width: 1px;
+            display: block;
+            position: fixed;
+            width: 10px;
+            height: 30px;
+            top: 100px;
+            left: 650px;
+            background-color: black;
+
+        }
+
+        .head {
+            width: 50px;
+            height: 50px;
+            border: 4px solid black;
+            border-radius: 50%;
+            background: none;
+            position: fixed;
+            top: 130px;
+            left: 628px;
+        }
+
+        .body {
+            border-style: solid;
+            border-width: 1px;
+            display: block;
+            position: fixed;
+            width: 2px;
+            height: 80px;
+            top: 184px;
+            left: 654px;
+            background-color: black;
+
+        }
+
+        .arms {
+            border-style: solid;
+            border-width: 1px;
+            display: block;
+            position: fixed;
+            width: 60px;
+            height: 2px;
+            top: 210px;
+            left: 624px;
+            background-color: black;
+
+        }
+
+        .leg1 {
+            border-style: solid;
+            border-width: 1px;
+            display: block;
+            position: fixed;
+            width: 2px;
+            height: 50px;
+            top: 260px;
+            left: 637px;
+            background-color: black;
+            transform: rotate(40deg);
+
+        }
+
+        .leg2 {
+            border-style: solid;
+            border-width: 1px;
+            display: block;
+            position: fixed;
+            width: 2px;
+            height: 50px;
+            top: 260px;
+            left: 670px;
+            background-color: black;
+            transform: rotate(-40deg);
+
+        }
+
+        .letters {
+            display: grid;
+            grid-template-columns: repeat(13, 1fr); /* 13 letters per row */
+            grid-template-rows: repeat(2, auto);   /* 2 rows total */
+            margin-top: 550px;
+            margin-left: 140px;
+            gap: 20px;
+            width: 80%;
+            padding: 20px 0;
+            justify-items: center; /* center letters horizontally in cell */
+            align-items: center;   /* center letters vertically in cell */
+        }
+
+        .letters div {
+            font-size: 32px;
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .letters div:hover {
+            background-color: #ddd;
+        }
+
+    </style>
+</html>
