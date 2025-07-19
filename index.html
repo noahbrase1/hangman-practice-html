@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
-    <head><title>Hangman</title></head>
+    <head>
+        <title>Hangman</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
     <body>
         <div class="container">
             <div class="box1"></div>
@@ -32,8 +35,8 @@
             <div class="k" id="k" onclick="guess('K','k')">K</div>
             <div class="l" id="l" onclick="guess('L','l')">L</div>
             <div class="m" id="m" onclick="guess('M','m')">M</div>
-            <div class="n" id="n" onclick="guess('N','o')">N</div>
-            <div class="o" id="o" onclick="guess('O','p')">O</div>
+            <div class="n" id="n" onclick="guess('N','n')">N</div>
+            <div class="o" id="o" onclick="guess('O','o')">O</div>
             <div class="p" id="p" onclick="guess('P','p')">P</div>
             <div class="q" id="q" onclick="guess('Q','q')">Q</div>
             <div class="r" id="r" onclick="guess('R','r')">R</div>
@@ -77,149 +80,143 @@
         <button id="reset" onclick="reset()">Start</button>
     </body>
     <style>
+        .body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            width: 100vw;
+            min-height: 100vh;
+            font-family: sans-serif;
+        }
+        .container, .letters, .spaces, .locations {
+            max-width: 96vw;
+            overflow-x: auto;
+        }
+
         .container {
             display: flex;
-            justify-content: center; /* centers horizontally */
+            flex-direction: column;
+            align-items: center;  /* true horizontal center */
+            margin: 24px auto;
+            width: 100%;
+            max-width: 300px;
         }
-
-        #reset {
-            width: 80px;
-            height: 30px;
-            position: absolute;
-            top: 725px;
-            left: 725px;
-        }
-
-
         .box1 {
-            border-style: solid;
-            border-width: 1px;
-            display: block;
-            position: fixed;
-            width: 150px;
-            height: 10px;
-            top: 100px;
-            background-color: black;
-
+            width: 80vw;
+            max-width: 180px;
+            height: 8px;
+            background: black;
+            margin-bottom: 0;
         }
-
         .box2 {
-            border-style: solid;
-            border-width: 1px;
-            display: block;
-            position: fixed;
             width: 10px;
-            height: 300px;
-            top: 100px;
-            left: 800px;
-            background-color: black;
-
+            height: 90px;
+            background: black;
+            margin-bottom: -8px;
         }
-
-        .box3 {
-            border-style: solid;
-            border-width: 1px;
-            display: block;
-            position: fixed;
-            width: 300px;
-            height: 10px;
-            top: 400px;
-            left: 650px;
-            background-color: black;
-
-        }
-
         .box4 {
-            border-style: solid;
-            border-width: 1px;
-            display: block;
-            position: fixed;
             width: 10px;
-            height: 30px;
-            top: 100px;
-            left: 650px;
-            background-color: black;
-
+            height: 24px;
+            background: black;
+        }
+        .box3 {
+            width: 35vw;
+            max-width: 130px;
+            height: 8px;
+            background: black;
+            margin-top: -8px;
         }
 
+        .person {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: -95px;
+            z-index: 2;
+        }
         .head {
-            width: 50px;
-            height: 50px;
+            width: 32px;
+            height: 32px;
             border: 4px solid black;
             border-radius: 50%;
             background: none;
-            position: fixed;
-            top: 130px;
-            left: 628px;
             display: none;
+            margin-bottom: -6px;
         }
-
         .body {
-            border-style: solid;
-            border-width: 1px;
-            display: block;
-            position: fixed;
-            width: 2px;
-            height: 80px;
-            top: 184px;
-            left: 654px;
-            background-color: black;
+            width: 4px;
+            height: 36px;
+            background: black;
             display: none;
         }
-
         .arms {
-            border-style: solid;
-            border-width: 1px;
-            display: block;
-            position: fixed;
-            width: 60px;
-            height: 2px;
-            top: 210px;
-            left: 624px;
-            background-color: black;
+            width: 41px;
+            height: 4px;
+            background: black;
             display: none;
+            margin: 0;
         }
-
+        .leg1, .leg2 {
+            width: 4px;
+            height: 32px;
+            background: black;
+            display: none;
+            margin-top: -4px;
+        }
         .leg1 {
-            border-style: solid;
-            border-width: 1px;
-            display: block;
-            position: fixed;
-            width: 2px;
-            height: 50px;
-            top: 260px;
-            left: 637px;
-            background-color: black;
-            transform: rotate(40deg);
-            display: none;
+            transform: rotate(32deg);
         }
-
         .leg2 {
-            border-style: solid;
-            border-width: 1px;
-            display: block;
-            position: fixed;
-            width: 2px;
-            height: 50px;
-            top: 260px;
-            left: 670px;
-            background-color: black;
-            transform: rotate(-40deg);
-            display: none;
+            transform: rotate(-32deg);
         }
-
+        #reset {
+            width: 120px;
+            height: 38px;
+            font-size: 1.1rem;
+            margin: 24px auto 0 auto;
+            display: block;
+        }
         .letters {
             display: grid;
-            grid-template-columns: repeat(13, 1fr); /* 13 letters per row */
-            grid-template-rows: repeat(2, auto);   /* 2 rows total */
-            margin-top: 550px;
-            margin-left: 140px;
-            gap: 20px;
-            width: 80%;
-            padding: 20px 0;
-            justify-items: center; /* center letters horizontally in cell */
-            align-items: center;   /* center letters vertically in cell */
+            grid-template-columns: repeat(13, 1fr);
+            gap: 14px;
+            width: 98vw;
+            max-width: 440px;
+            margin: 32px auto 0 auto;
+            justify-items: center;
+            align-items: center;
         }
+        .letters div {
+            font-size: 1.7rem;
+            width: 36px;
+            height: 36px;
+            text-align: center;
+            line-height: 36px;
+            background: #eee;
+            border-radius: 7px;
+            margin: 0 auto;
+        }
+        @media (max-width: 600px) {
+        .container {
+            max-width: 94vw;
+        }
+        .box1, .box3 {
+            width: 64vw;
+            max-width: 120px;
+        }
+        .letters {
+            font-size: 4vw;
+            max-width: 99vw;
+        }
+        .letters div {
+            width: 8vw;
+            min-width: 24px;
+            height: 8vw;
+            min-height: 24px;
+            font-size: 1.2rem;
+        }
+}
+
 
         .letters div {
             font-size: 32px;
@@ -244,7 +241,7 @@
             background-color: black;
             width: 40px;
             height: 5px;
-            position: fixed;
+            display: flex;
             left: 480px;
             top: 500px;
         }
@@ -256,7 +253,7 @@
             background-color: black;
             width: 40px;
             height: 5px;
-            position: fixed;
+            display: flex;
             left: 540px;
             top: 500px;
         }
@@ -268,7 +265,7 @@
             background-color: black;
             width: 40px;
             height: 5px;
-            position: fixed;
+            display: flex;
             left: 600px;
             top: 500px;
         }
@@ -280,7 +277,7 @@
             background-color: black;
             width: 40px;
             height: 5px;
-            position: fixed;
+            display: flex;
             left: 660px;
             top: 500px;
         }
@@ -292,7 +289,7 @@
             background-color: black;
             width: 40px;
             height: 5px;
-            position: fixed;
+            display: flex;
             left: 720px;
             top: 500px;
         }
@@ -304,7 +301,7 @@
             background-color: black;
             width: 40px;
             height: 5px;
-            position: fixed;
+            display: flex;
             left: 780px;
             top: 500px;
         }
@@ -316,7 +313,7 @@
             background-color: black;
             width: 40px;
             height: 5px;
-            position: fixed;
+            display: flex;
             left: 840px;
             top: 500px;
         }
@@ -328,7 +325,7 @@
             background-color: black;
             width: 40px;
             height: 5px;
-            position: fixed;
+            display: flex;
             left: 900px;
             top: 500px;
         }
@@ -340,7 +337,7 @@
             background-color: black;
             width: 40px;
             height: 5px;
-            position: fixed;
+            display: flex;
             left: 960px;
             top: 500px;
         }
@@ -352,67 +349,67 @@
             background-color: black;
             width: 40px;
             height: 5px;
-            position: fixed;
+            display: flex;
             left: 1020px;
             top: 500px;
         }
 
         #location1 {
-            position: fixed;
+            display: flex;
             left: 490px;
             top: 470px;
         }
 
         #location2 {
-            position: fixed;
+            display: flex;
             left: 550px;
             top: 470px;
         }
 
         #location3 {
-            position: fixed;
+            display: flex;
             left: 610px;
             top: 470px;
         }
 
         #location4 {
-            position: fixed;
+            display: flex;
             left: 670px;
             top: 470px;
         }
 
         #location5 {
-            position: fixed;
+            display: flex;
             left: 730px;
             top: 470px;
         }
 
         #location6 {
-            position: fixed;
+            display: flex;
             left: 790px;
             top: 470px;
         }
 
         #location7 {
-            position: fixed;
+            display: flex;
             left: 850px;
             top: 470px;
         }
 
         #location8 {
-            position: fixed;
+            display: flex;
             left: 910px;
             top: 470px;
         }
 
         #location9 {
-            position: fixed;
+            display: flex;
             left: 970px;
             top: 470px;
         }
 
         #location10 {
-            position: fixed;
+            display: flex;
             left: 1030px;
             top: 470px;
         }
