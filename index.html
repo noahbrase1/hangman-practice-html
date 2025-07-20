@@ -7,18 +7,19 @@
     <body>
         <div class="gallow-wrap">
             <div class="gallow">
-              <div class="box1"></div>
-              <div class="box2"></div>
-              <div class="box3"></div>
-              <div class="box4"></div>
-              <div class="person">
+                <div class="box1"></div>
+                <div class="box2"></div>
+                <div class="box3"></div>
+                <div class="box4"></div>
+                <div class="person">
                     <div class="head" id="head"></div>
                     <div class="body" id="body"></div>
                     <div class="arms" id="arms"></div>
                     <div class="leg1" id="leg1"></div>
                     <div class="leg2" id="leg2"></div>
                 </div>
-                <div class="letters">
+            </div>
+            <div class="letters">
                     <div class="a" id="a" onclick="guess('A','a')">A</div>
                     <div class="b" id="b" onclick="guess('B','b')">B</div>
                     <div class="c" id="c" onclick="guess('C','c')">C</div>
@@ -45,8 +46,8 @@
                     <div class="x" id="x" onclick="guess('X','x')">X</div>
                     <div class="y" id="y" onclick="guess('Y','y')">Y</div>
                     <div class="z" id="z" onclick="guess('Z','z')">Z</div>
-                </div>
             </div>
+            <button id="reset" onclick="reset()">Start</button>
         </div>
 
 
@@ -77,25 +78,27 @@
 
         </div>
 
-        <button id="reset" onclick="reset()">Start</button>
     </body>
     <style>
         .gallow-wrap {
-            /* This keeps the gallows centered horizontally, and gives some breathing room */
             display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            width: 100vw;
-            min-height: 100px;
-            /* Add some vertical margin if needed */
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            width: 100vw;          /* Responsive full width */
+            min-height: 0;         /* Remove big min-height */
+            padding-bottom: 4vw;   /* Add bottom breathing room if you want */
             margin: 3vh 0;
+            box-sizing: border-box;
         }
 
         /* Make the gallow a positioning context, and scale to screen width */
         .gallow {
             position: relative;
-            width: min(60vw, 270px);   /* Clamp maximum for desktop, shrink on mobile */
-            height: min(60vw, 330px);
+            width: 80vw;         /* 80% of the viewport width, adjusts on all devices */
+            max-width: 340px;    /* Optional: cap to 340px on large screens */
+            height: 60vh;        /* Keeps square-ish aspect ratio on different screens */
+            max-height: 440px;   /* Optional: cap for desktop */
         }
 
         .box1 {
@@ -153,8 +156,6 @@
             background: white;
             display: block;
             box-sizing: border-box;
-            /* for demo */
-            z-index: 10;
             display: none;
         }
 
@@ -217,32 +218,53 @@
             grid-template-columns: repeat(13, 1fr);
             grid-template-rows: repeat(2, auto);
             gap: 14px;
-            width: 100%;
-            max-width: 600px;
+            width: 96vw;        /* will fit almost all screens */
+            max-width: 600px;   /* limits it on desktop */
             margin: 32px auto 0 auto;
             justify-items: center;
             align-items: center;
             padding: 12px 0;
-            margin-top: 400px;  /* space below gallows */
-            margin-left: -180px; /* move further to left (increase as desired) */
+            box-sizing: border-box;
         }
 
+
         .letters div {
-           font-size: 32px;
-           width: 40px;
-           height: 40px;
-           text-align: center;
-           line-height: 40px;
-           background-color: #f0f0f0;
-           border-radius: 5px;
-           cursor: pointer;
-           transition: background-color 0.2s ease;
-       }
+            font-size: clamp(17px, 4vw, 32px);  /* Responsive font size */
+            width: min(7vw, 42px);              /* Responsive width */
+            height: min(7vw, 42px);             /* Responsive height */
+            min-width: 28px;                    /* Ensures tap target on phones */
+            min-height: 28px;
+            text-align: center;
+            line-height: min(7vw, 42px);
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            box-sizing: border-box;
+        }
 
 
        .letters div:hover {
            background-color: #ddd;
        }
+
+       @media (max-width: 500px) {
+        .letters {
+            width: 99vw;
+            max-width: 99vw;
+            gap: 6px;
+        }
+        .letters div {
+            font-size: clamp(14px, 3vw, 22px);
+            width: min(9vw, 30px);
+            height: min(9vw, 30px);
+            min-width: 20px;
+            min-height: 20px;
+            line-height: min(9vw, 30px);
+        }
+        }
+
+
 
     </style>
 
