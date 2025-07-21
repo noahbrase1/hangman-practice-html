@@ -366,11 +366,11 @@
             const ar = 13 / 20; // or whatever aspect makes your gallows look correct
 
             // Use a multiplier (like 0.85) to make it a little smaller than full size
-            let w = vw * 0.6;
+            let w = vw * 0.5;
             let h = w * (20 / 13);
 
-            if (h > vh * 0.3) { // only use 70% of the available height
-                h = vh * 0.3;
+            if (h > vh * 0.4) { // only use 70% of the available height
+                h = vh * 0.4;
                 w = h * (13 / 20);
             }
 
