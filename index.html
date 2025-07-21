@@ -19,6 +19,18 @@
                     <div class="leg2" id="leg2"></div>
                 </div>
             </div>
+            <div class="spaces">
+                <div class="space1" id="s1"></div>
+                <div class="space2" id="s2"></div>
+                <div class="space3" id="s3"></div>
+                <div class="space4" id="s4"></div>
+                <div class="space5" id="s5"></div>
+                <div class="space6" id="s6"></div>
+                <div class="space7" id="s7"></div>
+                <div class="space8" id="s8"></div>
+                <div class="space9" id="s9"></div>
+                <div class="space10" id="s10"></div>
+            </div>
             <div class="letters">
                     <div class="a" id="a" onclick="guess('A','a')">A</div>
                     <div class="b" id="b" onclick="guess('B','b')">B</div>
@@ -50,19 +62,6 @@
             <button id="reset" onclick="reset()">Start</button>
         </div>
 
-
-        <div class="spaces">
-            <div class="space1" id="s1"></div>
-            <div class="space2" id="s2"></div>
-            <div class="space3" id="s3"></div>
-            <div class="space4" id="s4"></div>
-            <div class="space5" id="s5"></div>
-            <div class="space6" id="s6"></div>
-            <div class="space7" id="s7"></div>
-            <div class="space8" id="s8"></div>
-            <div class="space9" id="s9"></div>
-            <div class="space10" id="s10"></div>
-        </div>
 
         <div class="locations">
             <div id="location1"></div>
@@ -217,13 +216,15 @@
             display: grid;
             grid-template-columns: repeat(13, 1fr);
             grid-template-rows: repeat(2, auto);
-            gap: 14px;
+            gap: 1vw;
             width: 96vw;        /* will fit almost all screens */
             max-width: 600px;   /* limits it on desktop */
-            margin: 32px auto 0 auto;
+            margin: 4vw auto 0 auto;
+            margin-left: 25vw;
+            margin-right: auto;
             justify-items: center;
             align-items: center;
-            padding: 12px 0;
+            padding: 1vw 0;
             box-sizing: border-box;
         }
 
@@ -232,8 +233,6 @@
             font-size: clamp(17px, 4vw, 32px);  /* Responsive font size */
             width: min(7vw, 42px);              /* Responsive width */
             height: min(7vw, 42px);             /* Responsive height */
-            min-width: 28px;                    /* Ensures tap target on phones */
-            min-height: 28px;
             text-align: center;
             line-height: min(7vw, 42px);
             background-color: #f0f0f0;
@@ -262,6 +261,25 @@
             min-height: 20px;
             line-height: min(9vw, 30px);
         }
+        }
+
+        .spaces {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.8vw;
+            margin: 3vw 0 2vw 0;
+        }
+
+        .spaces > div {
+            background: #222;
+            height: 0.7vw;
+            min-width: 24px;
+            width: 7vw;
+            max-width: 40px;
+            margin: 0 0.4vw;
+            border-radius: 4px;
+            display: none; /* initially hidden, shown by JS */
         }
 
 
