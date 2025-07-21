@@ -91,12 +91,13 @@
         /* Make the gallow a positioning context, and scale to screen width */
         .gallow {
             position: relative;
-            width: min(85vw, 340px);       /* scales up to 340px or 85vw, whichever is smaller */
-            aspect-ratio: 13 / 20;         /* or pick the ratio that looks right for your gallows */
-            max-height: 90vh;              /* never exceed screen height */
+            width: min(85vw, 340px, 90vh * (13/20)); /* don't let width create an element too tall for the screen */
+            aspect-ratio: 13 / 20;
+            max-height: 90vh;
             margin: 0 auto;
             box-sizing: border-box;
         }
+
 
         .box1 {
             position: absolute;
@@ -288,8 +289,6 @@
             line-height: min(9vw, 30px);
         }
         }
-
-
 
 
     </style>
