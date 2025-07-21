@@ -358,6 +358,29 @@
             }
         }
 
+        function fitGallow() {
+            const wrap = document.querySelector('.gallow-wrap');
+            const gallow = document.querySelector('.gallow');
+            // Get viewport width and height, minus desired margins
+            const vw = window.innerWidth;
+            const vh = window.innerHeight - wrap.offsetTop;
+            let ar = 13 / 20;
+            let w = vw;
+            let h = w * (20/13);
+
+            if(h > vh * 0.9) {  // if height would go off screen
+                h = vh * 0.9;
+                w = h * (13/20);
+            }
+
+            gallow.style.width = w + "px";
+            gallow.style.height = h + "px";
+        }
+            window.addEventListener("resize", fitGallow);
+            window.addEventListener("orientationchange", fitGallow);
+            document.addEventListener("DOMContentLoaded", fitGallow);
+
+
         function reset() {
             // Hide hangman parts
             document.getElementById('reset').innerHTML = "Reset"
@@ -406,6 +429,7 @@
             }
                 return true;
         }
+
     </script>
 
 </html>
