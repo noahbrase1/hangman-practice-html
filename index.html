@@ -82,23 +82,21 @@
         .gallow-wrap {
             display: flex;
             flex-direction: column;
-            justify-content: flex-start;
-            align-items: center;
-            width: 100vw;          /* Responsive full width */
-            min-height: 0;         /* Remove big min-height */
-            padding-bottom: 4vw;   /* Add bottom breathing room if you want */
-            margin: 3vh 0;
+            align-items: center;    /* Center all children horizontally */
+            width: 100vw;
             box-sizing: border-box;
         }
+
 
         /* Make the gallow a positioning context, and scale to screen width */
         .gallow {
             position: relative;
-            width: 80vw;         /* 80% of the viewport width, adjusts on all devices */
-            max-width: 340px;    /* Optional: cap to 340px on large screens */
-            height: 60vh;        /* Keeps square-ish aspect ratio on different screens */
-            max-height: 440px;   /* Optional: cap for desktop */
+            width: min(85vw, 340px);     /* Responsive, capped on large screens */
+            height: min(60vw, 440px);
+            margin: 0 auto;
+            box-sizing: border-box;
         }
+
 
         .box1 {
             position: absolute;
@@ -212,26 +210,48 @@
             display: none;
         }
 
+        .spaces {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.8vw;
+            margin: 3vw 0 2vw 0;
+            width: 100%;
+        }
+        .spaces > div {
+            background: #222;
+            height: 0.7vw;
+            min-width: 24px;
+            width: 7vw;
+            max-width: 40px;
+            border-radius: 4px;
+            display: none;
+        }
+
+        .gallow, .letters {
+            max-width: 340px;
+        }
+
         .letters {
             display: grid;
             grid-template-columns: repeat(13, 1fr);
-            grid-template-rows: repeat(2, auto);
             gap: 1vw;
-            width: 96vw;        /* will fit almost all screens */
-            max-width: 600px;   /* limits it on desktop */
+            width: min(85vw, 340px);
             margin: 4vw auto 0 auto;
-            margin-right: auto;
             justify-items: center;
+            justify-content: center; /* <-- Add this line */
             align-items: center;
-            padding: 1vw 0;
             box-sizing: border-box;
+            padding: 1vw 0;
         }
 
 
         .letters div {
-            font-size: clamp(17px, 4vw, 32px);  /* Responsive font size */
-            width: min(7vw, 42px);              /* Responsive width */
-            height: min(7vw, 42px);             /* Responsive height */
+            font-size: clamp(17px, 4vw, 32px);
+            width: min(7vw, 42px);
+            height: min(7vw, 42px);
+            min-width: 28px;
+            min-height: 28px;
             text-align: center;
             line-height: min(7vw, 42px);
             background-color: #f0f0f0;
@@ -242,15 +262,22 @@
         }
 
 
+
        .letters div:hover {
            background-color: #ddd;
        }
 
        @media (max-width: 500px) {
+        .gallow {
+            width: 98vw;
+            height: 54vw;
+            max-width: 99vw;
+            max-height: none;
+        }
         .letters {
             width: 99vw;
             max-width: 99vw;
-            gap: 6px;
+            gap: 0.5vw;
         }
         .letters div {
             font-size: clamp(14px, 3vw, 22px);
@@ -262,24 +289,6 @@
         }
         }
 
-        .spaces {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 0.8vw;
-            margin: 3vw 0 2vw 0;
-        }
-
-        .spaces > div {
-            background: #222;
-            height: 0.7vw;
-            min-width: 24px;
-            width: 7vw;
-            max-width: 40px;
-            margin: 0 0.4vw;
-            border-radius: 4px;
-            display: none; /* initially hidden, shown by JS */
-        }
 
 
 
