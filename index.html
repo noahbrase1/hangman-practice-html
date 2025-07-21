@@ -361,21 +361,23 @@
         function fitGallow() {
             const wrap = document.querySelector('.gallow-wrap');
             const gallow = document.querySelector('.gallow');
-            // Get viewport width and height, minus desired margins
             const vw = window.innerWidth;
             const vh = window.innerHeight - wrap.offsetTop;
-            let ar = 13 / 20;
-            let w = vw;
-            let h = w * (20/13);
+            const ar = 13 / 20; // or whatever aspect makes your gallows look correct
 
-            if(h > vh * 0.9) {  // if height would go off screen
-                h = vh * 0.9;
-                w = h * (13/20);
+            // Use a multiplier (like 0.85) to make it a little smaller than full size
+            let w = vw * 0.6;
+            let h = w * (20 / 13);
+
+            if (h > vh * 0.5) { // only use 70% of the available height
+                h = vh * 0.5;
+                w = h * (13 / 20);
             }
 
             gallow.style.width = w + "px";
             gallow.style.height = h + "px";
         }
+
             window.addEventListener("resize", fitGallow);
             window.addEventListener("orientationchange", fitGallow);
             document.addEventListener("DOMContentLoaded", fitGallow);
